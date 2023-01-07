@@ -1,3 +1,4 @@
+name: Infracost
 on: [pull_request]
 
 jobs:
