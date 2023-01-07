@@ -5,7 +5,7 @@ package infracost # You must specify infracost as the Rego package name
 # You can read more about rule definitions in Rego here: https://www.openpolicyagent.org/docs/latest/policy-language/#rules
 deny[out] {
   # maxDiff defines the threshold that you require the cost estimate to be below
-  maxDiff = 5000
+  maxDiff = 5
 
   # msg defines the output that will be shown in PR comments under the Policy Checks/Failures section
   msg := sprintf(
