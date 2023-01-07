@@ -5,6 +5,12 @@ terraform {
       version = "4.40.0"
     }
   }
+  backend "s3" {
+    bucket = "aws-terraformtt"
+    key    = "aws/ec2-deploy/terraform.tfstate"
+    region = "us-east-1"
+    # role_arn = "arn:aws:iam::219634475281:user/Terraform"
+  }
 }
 
 
