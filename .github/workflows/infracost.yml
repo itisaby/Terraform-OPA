@@ -2,7 +2,6 @@ on:
   pull_request:
     branches:
       - main
-env:
  
 jobs:
   infracost:
@@ -11,8 +10,6 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-
-    env:
       
 
     steps:
