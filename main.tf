@@ -73,13 +73,13 @@ data "template_file" "user_data" {
 
 resource "aws_instance" "app_server" {
   ami                    = "ami-090fa75af13c156b4"
-  instance_type          = "t2.large"
+  instance_type          = "t2.small"
   vpc_security_group_ids = [aws_security_group.sg_server.id]
   #   count         = 2
   key_name  = aws_key_pair.deployer.key_name
   user_data = data.template_file.user_data.rendered
   tags = {
-    Name = "arnab"
+    Name = "maity"
   }
 }
 
