@@ -1,0 +1,37 @@
+name: CI/CD
+on:
+  push:
+    branches:
+      - main
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_REGION: us-east-1
+
+jobs:
+  deploy-infra:
+    runs-on: ubuntu-latest
+    outputs:
+      SERVER_PUBLIC_IP: ${{ steps.set-output.outputs.instance_public_ip }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: setup terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_wrapper: false
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        working-directory: .
+      - name: Terraform Plan
+        id: plan
+        run: |-
+          terraform plan \
+          -out=PLAN
+        working-directory: .
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply -auto-approve
+        working-directory: .
+    

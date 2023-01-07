@@ -71,6 +71,10 @@ data "template_file" "user_data" {
   template = file("./user-data.yml")
 }
 
+locals {
+  policy = file("instance-policy.rego")
+}
+
 resource "aws_instance" "app_server" {
   ami                    = "ami-090fa75af13c156b4"
   instance_type          = "t2.micro"
@@ -78,6 +82,9 @@ resource "aws_instance" "app_server" {
   #   count         = 2
   key_name  = aws_key_pair.deployer.key_name
   user_data = data.template_file.user_data.rendered
+  lifecycle {
+    create_before_destroy = true
+  }
   tags = {
     Name = "arnab"
   }
