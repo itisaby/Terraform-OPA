@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: DevPro
+  name: Terraform-OPA
   links:
     - url: https://github.com/itisaby
       title: My Dashboard
